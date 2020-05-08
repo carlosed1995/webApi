@@ -1,0 +1,51 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+ 	{{ include('EMEstudiantesMatriculasBundle:Matriculas:messages/success.html.twig') }}
+	{{ include('EMEstudiantesMatriculasBundle:Matriculas:messages/danger.html.twig') }}
+	<div class="main container">
+		<div class="row well">
+			<div class="col-md-6">
+				<div class="page-header">
+					<h2>Editar estudiante</h2>
+				</div>
+				{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'role' : 'form'}}) }}
+				    <h4 class="text-danger">{{ form_errors(form) }}</h4>
+
+					<fieldset>
+					    <div class="form-group">
+					        {{ form_label(form.codigo) }}
+					        {{ form_widget(form.codigo, {'attr': {'class': 'form-control', 'placeholder' : 'Codigo estudiante'}}) }}
+					        <span class="text-danger">{{ form_errors(form.codigo) }}</span>
+					    </div>
+
+					    <div class="form-group">
+					        {{ form_label(form.nombresApellidos, 'Nombre y Apellido', { 'label_attr': {'class': 'control-label'} }) }}
+					        {{ form_widget(form.nombresApellidos, {'attr': {'class': 'form-control', 'placeholder' : 'Nombre y Apellido'}}) }}
+					        <span class="text-danger">{{ form_errors(form.nombresApellidos) }}</span>
+					    </div>
+
+					    <div class="form-group">
+					        {{ form_label(form.edad) }}
+					        {{ form_widget(form.edad, {'attr': {'class': 'form-control', 'placeholder' : 'edad'}}) }}
+					        <span class="text-danger">{{ form_errors(form.edad) }}</span>
+					    </div>
+
+					    <div class="form-group">
+					        {{ form_label(form.email) }}
+					        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'Your email'}}) }}
+					        <span class="text-danger">{{ form_errors(form.email) }}</span>
+					    </div>
+   
+					</fieldset>
+
+				    <p>
+				        {{ form_widget(form.save, {'label' : 'Actualizar', 'attr': {'class': 'btn btn-success'}}) }}
+				    </p>
+
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

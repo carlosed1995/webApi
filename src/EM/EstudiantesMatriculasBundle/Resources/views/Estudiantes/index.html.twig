@@ -1,0 +1,95 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+ {{ parent() }}
+
+ 	{{ include('EMEstudiantesMatriculasBundle:Matriculas:messages/success.html.twig') }}
+	{{ include('EMEstudiantesMatriculasBundle:Matriculas:messages/danger.html.twig') }}
+
+	<div class="container">
+ 		{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'role' : 'form'} })  }}
+		  <h4 class="text-danger">{{ form_errors(form) }}</h4>
+		   <div class="form-group col-md-2">
+				{{ form_label(form.codigo, 'Codigo', { 'label_attr': {'class': 'control-label'} }) }}
+				{{ form_widget(form.codigo, {'attr': {'class': 'form-control', 'placeholder' : 'Codigo estudiante'}}) }}
+				<span class="text-danger">{{ form_errors(form.codigo) }}</span>
+			</div>
+			<div class="form-group col-md-2">
+				{{ form_label(form.nombresApellidos, 'Nombre y Apellido', { 'label_attr': {'class': 'control-label'} }) }}
+				{{ form_widget(form.nombresApellidos, {'attr': {'class': 'form-control col-md-2', 'placeholder' : 'Nombre y Apellido'}}) }}
+			    <span class="text-danger">{{ form_errors(form.nombresApellidos) }}</span>
+		    </div>
+		    
+		   
+		    <div class="form-group col-md-2">
+				{{ form_label(form.edad, 'Edad', { 'label_attr': {'class': 'control-label'} }) }}
+				{{ form_widget(form.edad, {'attr': {'class': 'form-control col-md-2', 'placeholder' : 'Edad'}}) }}
+			    <span class="text-danger">{{ form_errors(form.edad) }}</span>
+		    </div>
+		    <div class="form-group col-md-2">
+				{{ form_label(form.email, 'Correo', { 'label_attr': {'class': 'control-label'} }) }}
+				{{ form_widget(form.email, {'attr': {'class': 'form-control col-md-2', 'placeholder' : 'Correo'}}) }}
+			    <span class="text-danger">{{ form_errors(form.email) }}</span>
+		    </div>
+		    <div class="form-group col-md-2">
+		    	<br>
+				{{ form_widget(form.save, {'label' : 'Crear Estudiante', 'attr': {'class': 'btn btn-success'}}) }}
+				{{ form_end(form) }}
+		    </div>
+				
+	</div>
+ 
+	<div class="container">
+		<div class="page-header margin-none">
+				<h2 class="padding-none">Estudiantes</h2>
+			</div>
+		 
+		<div class="col-md-12">
+			
+  		 
+		  <div class="table-responsive">					
+				<table id="tabla" class="table table-striped table-hover">
+					<thead>
+						<tr>
+                            <th>Codigo</th>
+						    <th>Nombres y Apellidos</th>
+	 						<th>Correo</th>
+	 						<th>Edad</th>
+	 						<th>Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+				        {% for estudiantes in estudiante %}
+                            <tr data-id="{{ estudiantes.id }}">
+                                <td>{{ estudiantes.codigo }}</td>
+                                <td>{{ estudiantes.nombresApellidos }}</td>
+                                <td>{{ estudiantes.email }}</td>
+                                <td>{{ estudiantes.edad }}</td>
+				                <td class="actions">
+			                        <a href="{{ path('em_estudiantes_matriculas_edit', { id: estudiantes.id }) }}" class="btn btn-sm btn-primary">
+			                            {{ 'Edit'|trans }}
+			                        </a>
+			                        <a href="#" class="btn btn-sm btn-danger btn-delete">
+			                            {{ 'Delete'|trans }}
+			                        </a>
+				                </td>
+                            </tr>
+				        {% endfor %}
+					</tbody>
+				</table>
+			 
+				 
+			 
+			</div>
+	    </div>
+	</div>
+{{ include('EMEstudiantesMatriculasBundle:Matriculas:forms/form.html.twig', { form: delete_form_ajax, message: '¿Esta seguro de eliminar este registro?', id: 'form-delete', with_submit: false}) }}
+
+
+{% endblock %}
+{% block javascripts  %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/estmat/js/delete-mat.js') }}"></script>
+{% endblock %} 
+ 
+

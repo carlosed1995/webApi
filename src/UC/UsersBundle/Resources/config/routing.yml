@@ -1,0 +1,44 @@
+uc_users_index:
+    path:     /users/index 
+    defaults: { _controller: UCUsersBundle:Users:index }
+uc_users_add:
+    path:     /users/add
+    defaults: { _controller: UCUsersBundle:Users:add }
+uc_users_create:
+    path:     /users/create
+    defaults: { _controller: UCUsersBundle:Users:create }
+    methods: POST
+uc_users_edit:
+    path:     /users/edit/{id}
+    defaults: { _controller: UCUsersBundle:Users:edit }
+uc_users_view:
+    path:     /users/view/{id}
+    defaults: { _controller: UCUsersBundle:Users:view }
+uc_users_delete:
+    path:     /users/delete/{id}
+    defaults: { _controller: UCUsersBundle:Users:delete }   
+    methods:  [POST, DELETE]
+uc_users_redirect_add: 
+    path: /users/create
+    defaults:
+        _controller: UCUsersBundle:Users:add
+        path: /users/add
+        permanent: true
+
+
+        # Autentication
+
+uc_users_homepage:
+    path:     /
+    defaults: { _controller: UCUsersBundle:Users:home }
+
+uc_users_login:
+    path:     /login
+    defaults: { _controller: UCUsersBundle:Security:login }
+
+uc_users_login_check:
+    path:     /login_check
+    defaults: { _controller: UCUsersBundle:Security:loginCheck }
+
+uc_users_logout:
+    path:     /logout

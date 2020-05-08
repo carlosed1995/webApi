@@ -1,0 +1,12 @@
+em_estudiantes_matriculas:
+    resource: "@EMEstudiantesMatriculasBundle/Resources/config/routing.yml"
+    prefix:   /
+
+uc_users:
+    resource: "@UCUsersBundle/Resources/config/routing.yml"
+    prefix:   /
+
+l_ulogin_users:
+    resource: "@LUloginUsersBundle/Resources/config/routing.yml"
+    prefix:   /
+

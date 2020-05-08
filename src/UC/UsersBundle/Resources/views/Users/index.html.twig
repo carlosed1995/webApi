@@ -1,0 +1,59 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+ {{ parent() }}
+   
+    
+	{{ include('UCUsersBundle:Users:messages/success.html.twig') }}
+	{{ include('UCUsersBundle:Users:messages/danger.html.twig') }}
+	<div class="container">
+		<div class="col-md-12">
+			<div class="page-header margin-none">
+				<h2 class="padding-none">Usuarios</h2>
+			</div>
+			<div class="table-responsive">					
+				<table id='tabla' class="table table-striped table-hover">
+					<thead>
+						<tr>
+                            <th scope="col">Usuario</th>
+						    <th scope="col">Nombre</th>
+	 						<th scope="col">Apellido</th>
+	 						<th scope="col">Correo</th>
+	 						<th scope="col">Fecha Creado</th>
+	 						<th scope="col">Fecha Act</th>
+	 						<th scope="col">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+				        {% for user in users %}
+                            <tr data-id="{{ user.id }}">
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.firstName }}</td>
+                                <td>{{ user.lastName }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.createdAt|date('d-m-Y H:i') }}</td>
+                                <td>{{ user.updatedAt|date('d-m-Y H:i') }}</td>
+				                <td class="actions">
+			                        <a href="#" class="btn btn-sm btn-danger btn-delete">
+			                            Eliminar
+			                        </a>
+				                </td>
+                            </tr>
+				        {% endfor %}
+					</tbody>
+				</table>
+			 
+				 
+			 
+			</div>
+		</div>
+	</div>
+ 
+	{{ include('UCUsersBundle:Users:forms/form.html.twig', { form: delete_form_ajax, message: '¿Esta seguro de eliminar este registro?', id: 'form-delete', with_submit: false}) }}  
+
+{% endblock %}
+{% block javascripts  %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/ucusers/js/delete-user.js') }}"></script>
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+ {{ parent() }}
+
+	{{ include('EMEstudiantesMatriculasBundle:Matriculas:messages/success.html.twig') }}
+	{{ include('EMEstudiantesMatriculasBundle:Matriculas:messages/danger.html.twig') }}
+
+	<div class="container">
+ 		{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'role' : 'form', 'class': 'form-inline'} })  }}
+		  <h4 class="text-danger">{{ form_errors(form) }}</h4>
+			<div class="form-group">
+				{{ form_label(form.estudiantes) }}
+				{{ form_widget(form.estudiantes, {'attr': {'class': 'form-control', 'placeholder' : 'estudiantes'}}) }}
+				<span class="text-danger">{{ form_errors(form.estudiantes) }}</span>
+			</div>
+			<div class="form-group">
+				{{ form_label(form.periodo) }}
+				{{ form_widget(form.periodo, {'attr': {'class': 'form-control', 'placeholder' : 'Periodo'}}) }}
+			    <span class="text-danger">{{ form_errors(form.periodo) }}</span>
+		    </div>
+		{{ form_widget(form.save, {'label' : 'Crear Matricula', 'attr': {'class': 'btn btn-success'}}) }}
+		{{ form_end(form) }}
+	</div>
+	<div class="container">
+		<div class="col-md-12">
+			<div class="page-header margin-none">
+				<h2 class="padding-none">Matriculas</h2>
+			</div>
+			<div class="table-responsive">					
+				<table id="tabla" class="table table-striped table-hover">
+					<thead>
+						<tr>
+                            <th scope="col">Codigo</th>
+						    <th scope="col">Nombres y Apellido</th>
+	 						<th scope="col">Correo</th>
+	 						<th scope="col">Periodo</th>
+	 						<th scope="col">Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+				        {% for matriculas in matricula %}
+                            <tr data-id="{{ matriculas.id }}">
+                                <td>{{ matriculas.estudiantes ? matriculas.estudiantes.codigo }}</td>
+                                <td>{{ matriculas.estudiantes ? matriculas.estudiantes.nombresApellidos }}</td>
+                                <td>{{ matriculas.estudiantes ? matriculas.estudiantes.email }}</td>
+                                <td>{{ matriculas.estudiantes ? matriculas.periodo }}</td>
+				                <td class="actions">
+			                        <a href="#" class="btn btn-sm btn-primary">
+			                            {{ 'Edit'|trans }}
+			                        </a>
+
+			                        <a href="#" class="btn btn-sm btn-danger btn-delete">
+			                            {{ 'Delete'|trans }}
+			                        </a>
+				                </td>
+                            </tr>
+				        {% endfor %}
+					</tbody>
+				</table>
+			 
+				 
+			 
+			</div>
+		</div>
+	</div>
+	{{ include('EMEstudiantesMatriculasBundle:Matriculas:forms/form.html.twig', { form: delete_form_ajax, message: '¿Esta seguro de eliminar este registro?', id: 'form-delete', with_submit: false}) }}
+
+{% endblock %}
+{% block javascripts  %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/estmat/js/delete-mat.js') }}"></script>
+{% endblock %}   
+ 
+

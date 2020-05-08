@@ -1,0 +1,23 @@
+{{ form_start(formdelete, {'attr': {'id': id|default('formdelete')}} ) }}
+
+    {{ form_widget(formdelete) }}
+    
+    {% if with_submit is not defined or with_submit == true %}
+    <input type="button" value="{{ 'Delete user'|trans }}" class="btn btn-lg btn-block btn-danger" onclick="confirmDelete()" >
+    {% endif %}
+
+{{ form_end(formdelete) }}
+
+<script>
+    var message = '{{ message }}';
+    
+    function confirmDelete()
+    {
+        bootbox.confirm(message, function(result) {
+            if(result == true)
+            {
+                document.form.submit();
+            }
+        });
+    }
+</script>

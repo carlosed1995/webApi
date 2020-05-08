@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+	<div class="container">
+        <h2 class="text-center">
+            {{ 'Welcome'|trans }}
+            :
+            {{ app.user.username }}
+        </h2>
+	</div>
+{% endblock %}

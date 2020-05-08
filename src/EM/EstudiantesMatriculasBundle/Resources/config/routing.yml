@@ -1,0 +1,44 @@
+em_estudiantes_matriculas_index:
+    path:     /matriculas/index
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:index }
+em_estudiantes_matriculas_eindex:
+    path:     /estudiantes/eindex 
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:eindex }
+em_estudiantes_matriculas_createest:    
+    path:     /estudiantes/createest 
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:createest }
+    methods: POST 
+em_estudiantes_matriculas_createmat:    
+    path:     /matriculas/createmat 
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:createmat }
+    methods: POST
+em_estudiantes_matriculas_deletemat:
+    path:     /matriculas/deletemat/{id}
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:deletemat }   
+    methods:  [POST, DELETE]
+em_estudiantes_matriculas_delete:
+    path:     /estudiantes/delete/{id}
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:delete }   
+    methods:  [POST, DELETE]
+em_estudiantes_matriculas_edit:
+    path:     /estudiantes/edit/{id}
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:edit }
+em_estudiantes_matriculas_update:
+    path:     /estudiantes/update/{id}
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:update }
+    methods:  [POST, PUT]
+em_estudiantes_matriculas_viewmat:
+    path:     /viewmat/{id}
+    defaults: { _controller: EMEstudiantesMatriculasBundle:EstMat:viewmat }
+em_estudiantes_matriculas_redirect_addest: 
+    path: /estudiantes/createest
+    defaults:
+        _controller: EMEstudiantesMatriculasBundle:EstMat:createest
+        path: /estudiantes/eindex
+        permanent: true
+em_estudiantes_matriculas_redirect_add: 
+    path: /matriculas/createmat
+    defaults:
+        _controller: EMEstudiantesMatriculasBundle:EstMat:createmat
+        path: /matriculas/index
+        permanent: true
